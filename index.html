@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legal Literacy Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+    }
+    nav {
+      width: 250px;
+      background: #34495e;
+      color: white;
+      padding: 1rem;
+      height: 100vh;
+    }
+    nav h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    nav ul li {
+      margin: 0.5rem 0;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+    main {
+      flex: 1;
+      padding: 2rem;
+    }
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .tool {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .welcome-button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #2980b9;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Legal Literacy Portal</h1>
+    <p>Empowering South Africans with professional legal knowledge and services</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <h2>Legal Tools</h2>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Document Summarizer</a></li>
+        <li><a href="#">Fraud Detection</a></li>
+        <li><a href="#">Will Generator</a></li>
+        <li><a href="#">Property & Legal Help</a></li>
+        <li><a href="#">Know Your Rights</a></li>
+        <li><a href="#">SASSA Loan Assistant</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h2>Available Services</h2>
+      <div class="tools">
+        <div class="tool"><strong>Fraud Protection</strong><p>Safeguard your identity and finances.</p></div>
+        <div class="tool"><strong>Document Analysis</strong><p>Get professional summaries and insights.</p></div>
+        <div class="tool"><strong>SASSA Support</strong><p>Navigate grants and loan assistance.</p></div>
+        <div class="tool"><strong>Property Law</strong><p>Understand your rights and obligations.</p></div>
+      </div>
+      <button class="welcome-button">Play Welcome Message</button>
+    </main>
+  </div>
+</body>
+</html>
