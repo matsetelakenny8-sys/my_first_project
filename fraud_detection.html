@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fraud Detection</title>
+<style>
+body { margin:0; font-family:Arial; background:#f2f4ff; }
+.sidebar { background:#4459ff; width:230px; height:100vh; position:fixed; padding:20px; color:white; }
+.sidebar a { display:block; color:white; margin:8px 0; text-decoration:none; }
+.sidebar a.active { background:rgba(255,255,255,0.2); border-radius:5px; }
+.content { margin-left:250px; padding:30px; }
+textarea { width:100%; padding:10px; border-radius:6px; border:1px solid #ccc; }
+.result { margin-top:12px; background:white; padding:10px; border-radius:6px; }
+button { background:#4459ff; color:white; padding:10px 20px; border:none; border-radius:6px; cursor:pointer; }
+button:hover { background:#2e40ff; }
+</style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>⚖️ Legal Tools</h2>
+    <a href="index.html">Home</a>
+    <a href="fraud-detection.html" class="active">Fraud Detection</a>
+    <a href="document-summarizer.html">Document Summarizer</a>
+    <a href="will-generator.html">Will Generator</a>
+    <a href="property-legal-help.html">Property & Legal Help</a>
+    <a href="know-your-rights.html">Know Your Rights</a>
+    <a href="sassa-loan-assistant.html">SASSA Loan Assistant</a>
+  </div>
+
+  <div class="content">
+    <h1>Fraud Detection</h1>
+    <p>Scan text or clauses for fraudulent or risky terms.</p>
+    <textarea id="fraudText" rows="6"></textarea>
+    <button onclick="scanFraud()">Scan</button>
+    <div id="fraudResult" class="result">Results will appear here.</div>
+  </div>
+
+  <script>
+    function scanFraud() {
+      const txt = document.getElementById("fraudText").value.toLowerCase();
+      const risks = ["urgent", "transfer", "sign now", "guarantee", "no refund"];
+      const found = risks.filter(w => txt.includes(w));
+      const res = document.getElementById("fraudResult");
+      res.innerHTML = found.length
+        ? "⚠️ Suspicious terms: " + found.join(", ")
+        : "✅ No red flags found.";
+    }
+  </script>
+</body>
+</html>
