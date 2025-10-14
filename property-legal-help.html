@@ -1,76 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Property & Legal Help</title>
-<style>
-body { margin:0; font-family:Arial; background:#eef2ff; }
-.sidebar { background:#5c6bff; width:230px; height:100vh; position:fixed; padding:20px; color:white; }
-.sidebar a { color:white; display:block; margin:8px 0; text-decoration:none; }
-.sidebar a.active { background:rgba(255,255,255,0.25); border-radius:6px; }
-.content { margin-left:250px; padding:30px; }
-h1 { color:#333; }
-input, textarea {
-  width:100%;
-  padding:10px;
-  border-radius:5px;
-  border:1px solid #ccc;
-  margin-bottom:10px;
-}
-button {
-  background:#5c6bff;
-  color:white;
-  border:none;
-  padding:10px 20px;
-  border-radius:6px;
-  cursor:pointer;
-}
-button:hover { background:#4354ff; }
-.result {
-  margin-top:15px;
-  background:white;
-  padding:10px;
-  border-radius:6px;
-  border:1px dashed #cfd4ff;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property & Legal Help</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="sidebar">
-    <h2>⚖️ Legal Tools</h2>
+
+<nav class="navbar">
+  <h1>⚖️ Legal Literacy Portal</h1>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
-    <a href="summarizer.html">Document Summarizer</a>
-    <a href="fraud_detection.html">Fraud Detection</a>
-    <a href="will_generator.html">Will Generator</a>
+    <a href="document-summarizer.html">Document Summarizer</a>
+    <a href="fraud-detection.html">Fraud Detection</a>
+    <a href="will-generator.html">Will Generator</a>
     <a href="property-legal-help.html" class="active">Property & Legal Help</a>
     <a href="know-your-rights.html">Know Your Rights</a>
     <a href="sassa-loan-assistant.html">SASSA Loan Assistant</a>
   </div>
+</nav>
 
-  <div class="content">
-    <h1>Property & Legal Help</h1>
-    <p>Submit your property or legal question. Experts will review and respond.</p>
+<div class="content">
+  <h1>Property & Legal Help</h1>
+  <p>Submit your property or legal question below. Our team will respond with expert guidance.</p>
 
-    <input id="name" type="text" placeholder="Your Full Name">
-    <textarea id="query" rows="6" placeholder="Describe your issue..."></textarea>
-    <button onclick="submitQuery()">Submit Query</button>
+  <input id="name" type="text" placeholder="Your Full Name"><br>
+  <textarea id="query" rows="6" placeholder="Describe your legal issue..."></textarea><br>
+  <button class="main" onclick="submitQuery()">Submit Query</button>
 
-    <div id="queryResult" class="result">Your response will appear here.</div>
-  </div>
+  <div id="queryResult" style="margin-top:20px;"></div>
+</div>
 
-  <script>
-    function submitQuery() {
-      const name = document.getElementById("name").value.trim();
-      const query = document.getElementById("query").value.trim();
-      const res = document.getElementById("queryResult");
+<footer>
+  <p><strong>About Us:</strong> Providing legal help and property advice for South Africans.</p>
+  <p><strong>Contact Us:</strong> help@legalliteracyportal.co.za</p>
+  <p><strong>Location:</strong> Pretoria, South Africa</p>
+</footer>
 
-      if (!name || !query) {
-        res.textContent = "Please fill in all fields.";
-        return;
-      }
+<script>
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
 
-      res.innerHTML = `Thank you, <strong>${name}</strong>. Your legal query has been recorded and forwarded for review.<br><br><em>Query:</em> ${query}`;
-    }
-  </script>
+function submitQuery() {
+  const name = document.getElementById("name").value.trim();
+  const query = document.getElementById("query").value.trim();
+  const res = document.getElementById("queryResult");
+
+  if (!name || !query) {
+    res.textContent = "Please fill in all fields.";
+    return;
+  }
+
+  res.innerHTML = `Thank you, <strong>${name}</strong>!<br>Your legal query has been submitted successfully:<br><em>${query}</em>`;
+}
+</script>
 </body>
 </html>
