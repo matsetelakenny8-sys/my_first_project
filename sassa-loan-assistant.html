@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SASSA Loan Assistant</title>
+<style>
+body { margin:0; font-family:Arial; background:#eef3ff; }
+.sidebar { background:#584bff; width:230px; height:100vh; position:fixed; padding:20px; color:white; }
+.sidebar a { color:white; text-decoration:none; display:block; margin:8px 0; }
+.sidebar a.active { background:rgba(255,255,255,0.25); border-radius:6px; }
+.content { margin-left:250px; padding:30px; }
+input {
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  border-radius:5px;
+  border:1px solid #ccc;
+}
+button {
+  background:#584bff;
+  color:white;
+  padding:10px 15px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+button:hover { background:#3e36ff; }
+.result {
+  margin-top:15px;
+  background:white;
+  padding:12px;
+  border-radius:6px;
+  border:1px dashed #ccc;
+}
+</style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>⚖️ Legal Tools</h2>
+    <a href="index.html">Home</a>
+    <a href="document-summarizer.html">Document Summarizer</a>
+    <a href="fraud-detection.html">Fraud Detection</a>
+    <a href="will-generator.html">Will Generator</a>
+    <a href="property-legal-help.html">Property & Legal Help</a>
+    <a href="know-your-rights.html">Know Your Rights</a>
+    <a href="sassa-loan-assistant.html" class="active">SASSA Loan Assistant</a>
+  </div>
+
+  <div class="content">
+    <h1>SASSA Loan Assistant</h1>
+    <p>Understand your loan eligibility, repayment, and financial safety tips.</p>
+
+    <input id="loanAmount" type="number" placeholder="Enter loan amount (R)">
+    <input id="months" type="number" placeholder="Repayment period (months)">
+    <button onclick="calculateLoan()">Evaluate</button>
+
+    <div id="loanResult" class="result">Loan analysis will appear here.</div>
+  </div>
+
+  <script>
+    function calculateLoan() {
+      const amount = parseFloat(document.getElementById("loanAmount").value);
+      const months = parseInt(document.getElementById("months").value);
+      const res = document.getElementById("loanResult");
+
+      if (isNaN(amount) || isNaN(months) || amount <= 0 || months <= 0) {
+        res.textContent = "Please enter valid loan details.";
+        return;
+      }
+
+      const monthly = (amount / months).toFixed(2);
+      let risk = "✅ Loan seems manageable based on provided data.";
+      if (monthly > 1000) {
+        risk = "⚠️ High repayment detected. Consider reducing loan amount or extending duration.";
+      }
+
+      res.innerHTML = `<strong>Loan Evaluation:</strong><br>Loan Amount: R${amount}<br>Period: ${months} months<br>Estimated Monthly Payment: R${monthly}<br><br>${risk}`;
+    }
+  </script>
+</body>
+</html>
