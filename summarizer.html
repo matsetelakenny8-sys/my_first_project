@@ -1,249 +1,50 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Document Summarizer</title>
-  <style>
-    :root{--bg:#0f1724;--card:#0b1220;--accent:#3b82f6;--muted:#94a3b8;--glass: rgba(255,255,255,0.03)}
-    *{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
-    body{margin:0;background:linear-gradient(180deg,#071022 0%,#071527 60%);color:#e6eef8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}
-    .wrap{width:100%;max-width:1100px}
-    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-    h1{font-size:20px;margin:0}
-    p.lead{margin:0;color:var(--muted);font-size:13px}
-    .grid{display:grid;grid-template-columns:1fr 420px;gap:18px}
-    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.6);}
-    textarea{width:100%;min-height:360px;resize:vertical;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:var(--glass);color:inherit}
-    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-    .controls{display:flex;gap:8px;align-items:center;margin-top:10px}
-    select,input[type="number"]{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    button{background:var(--accent);border:none;padding:10px 14px;border-radius:8px;color:white;font-weight:600;cursor:pointer}
-    .small{font-size:13px;color:var(--muted)}
-    .result{white-space:pre-wrap;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:8px;min-height:180px;border:1px solid rgba(255,255,255,0.02)}
-    .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .chip{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:999px;font-size:13px;color:var(--muted)}
-    footer{margin-top:12px;color:var(--muted);font-size:12px}
-    .file-row{display:flex;gap:8px;align-items:center}
-    .keywords{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-    .kw{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:6px;font-size:13px}
-  </style>
+<meta charset="UTF-8">
+<title>Document Summarizer</title>
+<style>
+body { margin: 0; font-family: Arial; background: #eef2ff; }
+.sidebar { background: #4a60ff; width: 230px; height: 100vh; position: fixed; padding: 20px; color: white; }
+.sidebar a { color: white; text-decoration: none; display: block; margin: 8px 0; }
+.sidebar a.active { background: rgba(255,255,255,0.2); border-radius: 5px; }
+.content { margin-left: 250px; padding: 30px; }
+textarea { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+button { background: #5b6cff; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
+button:hover { background: #3f51ff; }
+.result { margin-top: 15px; background: white; padding: 10px; border-radius: 6px; }
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div>
-        <h1>Document Summarizer</h1>
-        <p class="lead">Paste text or upload a .txt file. This is an extractive summarizer (client-side).</p>
-      </div>
-      <div class="small">Client-only • Privacy-first</div>
-    </header>
+  <div class="sidebar">
+    <h2>⚖️ Legal Tools</h2>
+    <a href="index.html">Home</a>
+    <a href="document-summarizer.html" class="active">Document Summarizer</a>
+    <a href="fraud-detection.html">Fraud Detection</a>
+    <a href="will-generator.html">Will Generator</a>
+    <a href="property-legal-help.html">Property & Legal Help</a>
+    <a href="know-your-rights.html">Know Your Rights</a>
+    <a href="sassa-loan-assistant.html">SASSA Loan Assistant</a>
+  </div>
 
-    <div class="grid">
-      <section class="card">
-        <label for="inputText">Document text</label>
-        <textarea id="inputText" placeholder="Paste or drop your document here..."></textarea>
+  <div class="content">
+    <h1>Document Summarizer</h1>
+    <p>Paste your legal text below to simplify complex documents into plain language.</p>
 
-        <div class="controls">
-          <div style="flex:1;display:flex;gap:8px;align-items:center">
-            <label class="small" for="mode">Summary mode</label>
-            <select id="mode">
-              <option value="sentences">By sentences</option>
-              <option value="percent">By percent</option>
-            </select>
-            <input type="number" id="value" min="1" max="100" value="5" style="width:84px;" />
-            <div class="small" id="valueHint">sentences</div>
-          </div>
-          <button id="summarizeBtn">Summarize</button>
-        </div>
+    <textarea id="docText" rows="8" placeholder="Paste legal text here..."></textarea>
+    <button onclick="summarize()">Summarize</button>
 
-        <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
-          <div class="file-row">
-            <input type="file" id="fileInput" accept=".txt" />
-            <button id="loadFileBtn">Load file</button>
-            <button id="clearBtn">Clear</button>
-          </div>
-          <div class="small">Max reliable length: ~100k chars</div>
-        </div>
-
-        <div style="margin-top:12px">
-          <label class="small">Top keywords</label>
-          <div id="keywords" class="keywords"></div>
-        </div>
-
-        <footer>
-          <div>Algorithm: extractive — sentence scoring using token frequency (no external APIs).</div>
-        </footer>
-      </section>
-
-      <aside class="card">
-        <label class="small">Summary</label>
-        <div id="summary" class="result"></div>
-
-        <div class="meta">
-          <div class="chip" id="meta-sent">Sentences: 0</div>
-          <div class="chip" id="meta-words">Words: 0</div>
-          <div class="chip" id="meta-time">Time: 0ms</div>
-        </div>
-
-        <div style="display:flex;gap:8px;margin-top:12px">
-          <button id="copyBtn">Copy</button>
-          <button id="downloadBtn">Download .txt</button>
-        </div>
-      </aside>
-    </div>
+    <div id="summaryResult" class="result">Summary will appear here.</div>
   </div>
 
   <script>
-    // Simple client-side extractive summarizer
-    // - Splits into sentences
-    // - Scores sentences by sum of word frequencies (after removing stopwords)
-    // - Picks top-N sentences and returns them in original order
-
-    const stopwords = new Set((`a about above after again against all am an and any are aren't as at be because been before being below between both but by can't cannot could couldn't did didn't do does doesn't doing don't down during each few for from further had hadn't has hasn't have haven't having he he'd he'll he's her here here's hers herself him himself his how how's i i'd i'll i'm i've if in into is isn't it it's its itself let's me more most mustn't my myself no nor not of off on once only or other ought our ours ourselves out over own same shan't she she'd she'll she's should shouldn't so some such than that that's the their theirs them themselves then there there's these they they'd they'll they're they've this those through to too under until up very was wasn't we we'd we'll we're we've were weren't what what's when when's where where's which while who who's whom why why's with won't would wouldn't you you'd you'll you're you've your yours yourself yourselves`).split(/\s+/));
-
-    const el = id => document.getElementById(id);
-    const input = el('inputText');
-    const summarizeBtn = el('summarizeBtn');
-    const summary = el('summary');
-    const mode = el('mode');
-    const value = el('value');
-    const valueHint = el('valueHint');
-    const keywordsDiv = el('keywords');
-    const metaSent = el('meta-sent');
-    const metaWords = el('meta-words');
-    const metaTime = el('meta-time');
-    const fileInput = el('fileInput');
-    const loadFileBtn = el('loadFileBtn');
-    const clearBtn = el('clearBtn');
-    const copyBtn = el('copyBtn');
-    const downloadBtn = el('downloadBtn');
-
-    mode.addEventListener('change', () => {
-      if (mode.value === 'percent') valueHint.textContent = 'percent (1-100)';
-      else valueHint.textContent = 'sentences';
-    });
-
-    loadFileBtn.addEventListener('click', () => {
-      const f = fileInput.files[0];
-      if (!f) return alert('Choose a .txt file first');
-      if (f.type && f.type !== 'text/plain') {
-        // allow even if type missing; check extension
-        const ext = f.name.split('.').pop().toLowerCase();
-        if (ext !== 'txt') return alert('Only .txt files supported (for now)');
-      }
-      const reader = new FileReader();
-      reader.onload = e => { input.value = e.target.result; };
-      reader.onerror = () => alert('Could not read file');
-      reader.readAsText(f);
-    });
-
-    clearBtn.addEventListener('click', ()=>{ input.value=''; summary.textContent=''; keywordsDiv.innerHTML=''; metaSent.textContent='Sentences: 0'; metaWords.textContent='Words: 0'; metaTime.textContent='Time: 0ms'; });
-
-    copyBtn.addEventListener('click', async ()=>{
-      const txt = summary.textContent.trim();
-      if (!txt) return alert('No summary to copy');
-      try{ await navigator.clipboard.writeText(txt); alert('Copied to clipboard') } catch(e){ alert('Copy failed: '+e.message) }
-    });
-
-    downloadBtn.addEventListener('click', ()=>{
-      const txt = summary.textContent.trim();
-      if (!txt) return alert('No summary to download');
-      const blob = new Blob([txt], {type:'text/plain'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = 'summary.txt'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-    });
-
-    function tokenizeWords(text){
-      return text.toLowerCase().match(/[a-z0-9']+/g) || [];
+    function summarize() {
+      const text = document.getElementById("docText").value;
+      const result = document.getElementById("summaryResult");
+      if (!text.trim()) return result.textContent = "Please enter text first.";
+      const sentences = text.split(/[.?!]/).slice(0, 3).join(". ") + ".";
+      result.textContent = "Simplified Summary: " + sentences;
     }
-
-    function splitSentences(text){
-      // naive sentence split keeping punctuation
-      const parts = text.replace(/\r\n/g,'\n').split(/(?<=[.?!])\s+(?=[A-Z0-9"'“])/g);
-      // fallback: if only one long chunk, try splitting by newlines
-      if (parts.length === 1) return text.split(/\n+/).map(s=>s.trim()).filter(Boolean);
-      return parts.map(s=>s.trim()).filter(Boolean);
-    }
-
-    function topKeywords(freqMap, k=10){
-      const arr = Object.entries(freqMap).sort((a,b)=>b[1]-a[1]);
-      return arr.slice(0,k).map(x=>x[0]);
-    }
-
-    function summarizeText(text, options={mode:'sentences',value:5}){
-      const t0 = performance.now();
-      const sentences = splitSentences(text);
-      if (sentences.length===0) return {summary:'', time: Math.round(performance.now()-t0), sentences:0, words:0, keywords:[]};
-
-      // build word frequency map
-      const freq = Object.create(null);
-      let totalWords = 0;
-      for (const s of sentences){
-        const words = tokenizeWords(s);
-        for (const w of words){
-          if (stopwords.has(w)) continue;
-          freq[w] = (freq[w]||0)+1; totalWords++;
-        }
-      }
-
-      // score each sentence
-      const scores = sentences.map((s,idx)=>{
-        const words = tokenizeWords(s);
-        let score = 0; let count=0;
-        for (const w of words){ if (stopwords.has(w)) continue; score += (freq[w]||0); count++; }
-        // normalize by length to avoid favouring long sentences too much
-        const norm = count>0 ? score / Math.sqrt(count) : 0;
-        return {idx,score:norm,text:s};
-      });
-
-      // decide how many to pick
-      let pick = 5;
-      if (options.mode === 'percent'){
-        const pct = Math.max(1, Math.min(100, Number(options.value)||10));
-        pick = Math.max(1, Math.round(sentences.length * (pct/100)));
-      } else {
-        pick = Math.max(1, Math.min(sentences.length, Number(options.value)||5));
-      }
-
-      // sort by score descending and pick top
-      const top = scores.slice().sort((a,b)=>b.score - a.score).slice(0,pick);
-      // order by original index so summary reads naturally
-      top.sort((a,b)=>a.idx - b.idx);
-
-      const summaryText = top.map(x=>x.text).join(' ');
-      const keywords = topKeywords(freq, Math.min(12, Object.keys(freq).length));
-      const time = Math.round(performance.now()-t0);
-      return {summary:summaryText, time, sentences: top.length, words: summaryText.split(/\s+/).filter(Boolean).length, keywords};
-    }
-
-    summarizeBtn.addEventListener('click', ()=>{
-      const text = input.value.trim();
-      if (!text) return alert('Paste or load a document first');
-      const opts = {mode:mode.value, value: value.value};
-      const out = summarizeText(text, opts);
-      summary.textContent = out.summary || '(summary is empty)';
-      metaSent.textContent = 'Sentences: ' + out.sentences;
-      metaWords.textContent = 'Words: ' + out.words;
-      metaTime.textContent = 'Time: ' + out.time + 'ms';
-      // show keywords
-      keywordsDiv.innerHTML = '';
-      for (const k of out.keywords){
-        const d = document.createElement('div'); d.className='kw'; d.textContent = k; keywordsDiv.appendChild(d);
-      }
-    });
-
-    // Allow dropping text file into textarea
-    input.addEventListener('dragover', e=>{ e.preventDefault(); input.style.outline='2px dashed rgba(255,255,255,0.08)'; });
-    input.addEventListener('dragleave', e=>{ input.style.outline='none'; });
-    input.addEventListener('drop', e=>{
-      e.preventDefault(); input.style.outline='none';
-      const f = e.dataTransfer.files && e.dataTransfer.files[0];
-      if (!f) return;
-      if (f.type && f.type !== 'text/plain' && !f.name.endsWith('.txt')) return alert('Only .txt files supported');
-      const r = new FileReader(); r.onload = ev=> input.value = ev.target.result; r.readAsText(f);
-    });
-
   </script>
 </body>
 </html>
