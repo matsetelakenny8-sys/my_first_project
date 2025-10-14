@@ -1,67 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Know Your Rights</title>
-<style>
-body { margin:0; font-family:Arial; background:#f4f6ff; }
-.sidebar { background:#6f5bff; width:230px; height:100vh; position:fixed; padding:20px; color:white; }
-.sidebar a { color:white; text-decoration:none; display:block; margin:8px 0; }
-.sidebar a.active { background:rgba(255,255,255,0.2); border-radius:6px; }
-.content { margin-left:250px; padding:30px; }
-h1 { color:#222; }
-button {
-  background:#6f5bff;
-  color:white;
-  border:none;
-  padding:10px 15px;
-  border-radius:6px;
-  cursor:pointer;
-  margin:4px;
-}
-button:hover { background:#5745ff; }
-.result {
-  margin-top:15px;
-  background:white;
-  border-radius:6px;
-  padding:12px;
-  border:1px solid #ccc;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Know Your Rights</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="sidebar">
-    <h2>⚖️ Legal Tools</h2>
+
+<nav class="navbar">
+  <h1>⚖️ Legal Literacy Portal</h1>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
-    <a href="summarizer.html">Document Summarizer</a>
-    <a href="fraud_detection.html">Fraud Detection</a>
-    <a href="will_generator.html">Will Generator</a>
+    <a href="document-summarizer.html">Document Summarizer</a>
+    <a href="fraud-detection.html">Fraud Detection</a>
+    <a href="will-generator.html">Will Generator</a>
     <a href="property-legal-help.html">Property & Legal Help</a>
     <a href="know-your-rights.html" class="active">Know Your Rights</a>
     <a href="sassa-loan-assistant.html">SASSA Loan Assistant</a>
   </div>
+</nav>
 
-  <div class="content">
-    <h1>Know Your Rights</h1>
-    <p>Learn more about your constitutional, family, and social rights.</p>
+<div class="content">
+  <h1>Know Your Rights</h1>
+  <p>Click a category to learn about your rights under South African law.</p>
 
-    <button onclick="showRights('constitution')">Constitutional Rights</button>
-    <button onclick="showRights('family')">Family Rights</button>
-    <button onclick="showRights('sassa')">SASSA & Social Rights</button>
+  <button class="main" onclick="showRights('constitution')">Constitutional Rights</button>
+  <button class="main" onclick="showRights('family')">Family Rights</button>
+  <button class="main" onclick="showRights('social')">Social Rights</button>
 
-    <div id="rightsResult" class="result">Select a topic to display details.</div>
-  </div>
+  <div id="rightsResult" style="margin-top:20px;"></div>
+</div>
 
-  <script>
-    function showRights(topic) {
-      const res = document.getElementById("rightsResult");
-      const rights = {
-        constitution: "🧾 South Africa’s Constitution protects equality, dignity, and freedom for all citizens. You have the right to fair treatment, justice, and access to information.",
-        family: "👨‍👩‍👧 Family rights ensure protection against domestic violence, fair child custody, and maintenance support under South African family law.",
-        sassa: "💡 SASSA beneficiaries have the right to accurate information, appeal unfair decisions, and protection from financial exploitation."
-      };
-      res.textContent = rights[topic];
-    }
-  </script>
+<footer>
+  <p><strong>About Us:</strong> Educating citizens about their legal and constitutional rights.</p>
+  <p><strong>Contact Us:</strong> rights@legalliteracyportal.co.za</p>
+  <p><strong>Location:</strong> Pretoria, South Africa</p>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+
+function showRights(type) {
+  const result = document.getElementById("rightsResult");
+  const rights = {
+    constitution: "🧾 Every South African has the right to equality, dignity, freedom of expression, and access to justice.",
+    family: "👨‍👩‍👧 You have the right to family protection, fair custody, and protection from domestic violence.",
+    social: "💰 Citizens have the right to access basic social services and government support under the SASSA Act."
+  };
+  result.textContent = rights[type];
+}
+</script>
 </body>
 </html>
