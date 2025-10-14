@@ -1,49 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Will Generator</title>
-<style>
-body { margin:0; font-family:Arial; background:#f0f2ff; }
-.sidebar { background:#6b5bff; width:230px; height:100vh; position:fixed; padding:20px; color:white; }
-.sidebar a { color:white; display:block; margin:8px 0; text-decoration:none; }
-.sidebar a.active { background:rgba(255,255,255,0.2); border-radius:6px; }
-.content { margin-left:250px; padding:30px; }
-input, textarea { width:100%; padding:10px; border-radius:5px; border:1px solid #ccc; }
-button { background:#6b5bff; color:white; padding:10px 20px; border:none; border-radius:6px; cursor:pointer; }
-button:hover { background:#5745ff; }
-.result { margin-top:15px; background:white; padding:10px; border-radius:6px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will Generator</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="sidebar">
-    <h2>⚖️ Legal Tools</h2>
+
+<nav class="navbar">
+  <h1>⚖️ Legal Literacy Portal</h1>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
-    <a href="will_generator.html" class="active">Will Generator</a>
-    <a href="summarizer.html">Document Summarizer</a>
-    <a href="fraud_detection.html">Fraud Detection</a>
+    <a href="document-summarizer.html">Document Summarizer</a>
+    <a href="fraud-detection.html">Fraud Detection</a>
+    <a href="will-generator.html" class="active">Will Generator</a>
     <a href="property-legal-help.html">Property & Legal Help</a>
     <a href="know-your-rights.html">Know Your Rights</a>
     <a href="sassa-loan-assistant.html">SASSA Loan Assistant</a>
   </div>
+</nav>
 
-  <div class="content">
-    <h1>Will Generator</h1>
-    <p>Generate a simple will draft following South African legal guidelines.</p>
-    <input id="name" type="text" placeholder="Your Full Name">
-    <textarea id="beneficiaries" rows="5" placeholder="List of beneficiaries (name - relation - share)"></textarea>
-    <button onclick="generateWill()">Generate</button>
-    <div id="willResult" class="result">Generated will appears here.</div>
-  </div>
+<div class="content">
+  <h1>Will Generator</h1>
+  <p>Fill in the fields below to generate a simple legal will template.</p>
+  
+  <input type="text" id="fullname" placeholder="Full Name"><br>
+  <input type="text" id="beneficiary" placeholder="Beneficiary Name"><br>
+  <input type="text" id="asset" placeholder="Main Asset (e.g., House, Car, Savings)"><br>
+  <button class="main" onclick="generateWill()">Generate Will</button>
 
-  <script>
-    function generateWill() {
-      const name = document.getElementById("name").value;
-      const ben = document.getElementById("beneficiaries").value;
-      const res = document.getElementById("willResult");
-      if (!name || !ben) return res.textContent = "Please fill in all fields.";
-      res.textContent = `I, ${name}, declare this to be my Last Will and Testament. Beneficiaries:\n${ben}\n\nThis is a basic draft — consult a legal expert for a valid will.`;
-    }
-  </script>
+  <div id="willResult" style="margin-top:20px;"></div>
+</div>
+
+<footer>
+  <p><strong>About Us:</strong> We help citizens create simple legal wills easily.</p>
+  <p><strong>Contact Us:</strong> info@legalliteracyportal.co.za</p>
+  <p><strong>Location:</strong> Pretoria, South Africa</p>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+
+function generateWill() {
+  const name = document.getElementById("fullname").value;
+  const ben = document.getElementById("beneficiary").value;
+  const asset = document.getElementById("asset").value;
+  const res = document.getElementById("willResult");
+
+  if (!name || !ben || !asset) {
+    res.textContent = "Please fill in all fields before generating a will.";
+    return;
+  }
+
+  res.innerHTML = `
+    <h3>🧾 Simple Will Document</h3>
+    <p>I, <strong>${name}</strong>, being of sound mind, hereby declare this document to be my Last Will and Testament.</p>
+    <p>I leave my <strong>${asset}</strong> to <strong>${ben}</strong>.</p>
+    <p>Signed and witnessed on this day.</p>
+  `;
+}
+</script>
 </body>
 </html>
