@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Document Summarizer</title>
-<style>
-body { margin: 0; font-family: Arial; background: #eef2ff; }
-.sidebar { background: #4a60ff; width: 230px; height: 100vh; position: fixed; padding: 20px; color: white; }
-.sidebar a { color: white; text-decoration: none; display: block; margin: 8px 0; }
-.sidebar a.active { background: rgba(255,255,255,0.2); border-radius: 5px; }
-.content { margin-left: 250px; padding: 30px; }
-textarea { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
-button { background: #5b6cff; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
-button:hover { background: #3f51ff; }
-.result { margin-top: 15px; background: white; padding: 10px; border-radius: 6px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Summarizer</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="sidebar">
-    <h2>⚖️ Legal Tools</h2>
+
+<nav class="navbar">
+  <h1>⚖️ Legal Literacy Portal</h1>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
-    <a href="summarizer.html" class="active">Document Summarizer</a>
-    <a href="fraud_detection.html">Fraud Detection</a>
-    <a href="will_generator.html">Will Generator</a>
+    <a href="document-summarizer.html" class="active">Document Summarizer</a>
+    <a href="fraud-detection.html">Fraud Detection</a>
+    <a href="will-generator.html">Will Generator</a>
     <a href="property-legal-help.html">Property & Legal Help</a>
     <a href="know-your-rights.html">Know Your Rights</a>
     <a href="sassa-loan-assistant.html">SASSA Loan Assistant</a>
   </div>
+</nav>
 
-  <div class="content">
-    <h1>Document Summarizer</h1>
-    <p>Paste your legal text below to simplify complex documents into plain language.</p>
+<div class="content">
+  <h1>Document Summarizer</h1>
+  <p>Paste your legal text below to simplify complex documents into plain language.</p>
+  <textarea id="docText" rows="8" placeholder="Paste legal text here..."></textarea>
+  <br><button class="main" onclick="summarize()">Summarize</button>
+  <div id="summaryResult" style="margin-top:20px;"></div>
+</div>
 
-    <textarea id="docText" rows="8" placeholder="Paste legal text here..."></textarea>
-    <button onclick="summarize()">Summarize</button>
+<footer>
+  <p><strong>About Us:</strong> Helping South Africans simplify legal documents.</p>
+  <p><strong>Contact Us:</strong> info@legalliteracyportal.co.za</p>
+  <p><strong>Location:</strong> Pretoria, South Africa</p>
+</footer>
 
-    <div id="summaryResult" class="result">Summary will appear here.</div>
-  </div>
-
-  <script>
-    function summarize() {
-      const text = document.getElementById("docText").value;
-      const result = document.getElementById("summaryResult");
-      if (!text.trim()) return result.textContent = "Please enter text first.";
-      const sentences = text.split(/[.?!]/).slice(0, 3).join(". ") + ".";
-      result.textContent = "Simplified Summary: " + sentences;
-    }
-  </script>
+<script>
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+function summarize() {
+  const text = document.getElementById("docText").value;
+  const result = document.getElementById("summaryResult");
+  if (!text.trim()) return result.textContent = "Please enter some text.";
+  const sentences = text.split(/[.?!]/).slice(0, 3).join(". ") + ".";
+  result.textContent = "Simplified Summary: " + sentences;
+}
+</script>
 </body>
 </html>
