@@ -1,1 +1,181 @@
+/* ---------- RESET ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(180deg, #f3f6fb 0%, #e7ecff 100%);
+  color: #1a1a1a;
+  overflow-x: hidden;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  backdrop-filter: blur(8px);
+  background: rgba(90, 105, 255, 0.9);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+}
+
+.navbar h1 {
+  color: white;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: white;
+  color: #4c5cff;
+  box-shadow: 0 3px 6px rgba(255,255,255,0.4);
+}
+
+/* ---------- HERO SECTION ---------- */
+.hero {
+  background: linear-gradient(to bottom right, #5b6cff, #9f8bff);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+  border-radius: 0 0 60px 60px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.hero h1 {
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.hero p {
+  font-size: 18px;
+  opacity: 0.9;
+  margin-top: 10px;
+}
+
+.hero button {
+  margin-top: 20px;
+  background: white;
+  color: #5b6cff;
+  border: none;
+  padding: 12px 25px;
+  font-size: 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.hero button:hover {
+  transform: scale(1.05);
+  background: #f0f0ff;
+}
+
+/* ---------- CONTENT ---------- */
+.content {
+  padding: 50px 80px;
+  text-align: center;
+}
+
+.content h2 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.content p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background: #1e293b;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+  margin-top: 80px;
+  border-radius: 60px 60px 0 0;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+}
+
+footer p {
+  margin: 6px 0;
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+footer strong {
+  color: #9dc1ff;
+}
+
+/* ---------- MOBILE MENU ---------- */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(91,108,255,0.98);
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    width: 220px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* ---------- ANIMATION ---------- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
