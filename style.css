@@ -26,18 +26,15 @@ body {
   align-items: center;
   padding: 15px 40px;
 }
-
 .navbar h1 {
   color: white;
   font-size: 22px;
   letter-spacing: 0.5px;
 }
-
 .nav-links {
   display: flex;
   gap: 20px;
 }
-
 .nav-links a {
   color: #fff;
   text-decoration: none;
@@ -46,9 +43,7 @@ body {
   border-radius: 30px;
   transition: 0.3s;
 }
-
-.nav-links a:hover,
-.nav-links a.active {
+.nav-links a:hover, .nav-links a.active {
   background: white;
   color: #4c5cff;
   box-shadow: 0 3px 6px rgba(255,255,255,0.4);
@@ -62,34 +57,27 @@ body {
   padding: 80px 20px;
   border-radius: 0 0 60px 60px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  animation: fadeIn 1.2s ease-in-out;
 }
-
 .hero h1 {
   font-size: 42px;
   font-weight: 600;
-  letter-spacing: 1px;
 }
-
 .hero p {
   font-size: 18px;
   opacity: 0.9;
   margin-top: 10px;
 }
-
 .hero button {
   margin-top: 20px;
   background: white;
   color: #5b6cff;
   border: none;
   padding: 12px 25px;
-  font-size: 15px;
   border-radius: 30px;
   cursor: pointer;
   transition: 0.3s;
   font-weight: 500;
 }
-
 .hero button:hover {
   transform: scale(1.05);
   background: #f0f0ff;
@@ -100,13 +88,11 @@ body {
   padding: 50px 80px;
   text-align: center;
 }
-
-.content h2 {
+.content h2, .content h1 {
   font-size: 26px;
   color: #333;
   margin-bottom: 15px;
 }
-
 .content p {
   font-size: 16px;
   color: #555;
@@ -114,6 +100,25 @@ body {
   max-width: 800px;
   margin: 0 auto;
 }
+textarea, input {
+  width: 80%;
+  max-width: 600px;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+button.main {
+  background: #5b6cff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+button.main:hover { background: #3f51ff; }
 
 /* ---------- FOOTER ---------- */
 footer {
@@ -125,13 +130,11 @@ footer {
   border-radius: 60px 60px 0 0;
   box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
 }
-
 footer p {
   margin: 6px 0;
   font-size: 15px;
   opacity: 0.9;
 }
-
 footer strong {
   color: #9dc1ff;
 }
@@ -143,7 +146,6 @@ footer strong {
   color: white;
   cursor: pointer;
 }
-
 @media (max-width: 900px) {
   .nav-links {
     display: none;
@@ -156,26 +158,6 @@ footer strong {
     border-radius: 15px;
     width: 220px;
   }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
+  .nav-links.active { display: flex; }
+  .menu-toggle { display: block; }
 }
-
-/* ---------- ANIMATION ---------- */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
