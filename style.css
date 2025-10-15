@@ -161,3 +161,23 @@ footer strong {
   .nav-links.active { display: flex; }
   .menu-toggle { display: block; }
 }
+.login-section {
+  margin-top: 30px;
+}
+
+.login-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: #364fc7;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.3s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.login-btn:hover {
+  background: #2536a3;
+  transform: scale(1.05);
+}
