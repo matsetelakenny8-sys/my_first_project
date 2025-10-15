@@ -48,7 +48,7 @@ h1, h2, h3, p {
 }
 
 /* ================================
-   HOME PAGE
+   HOME PAGE STYLES
 ================================ */
 .hero {
   text-align: center;
@@ -67,6 +67,7 @@ h1, h2, h3, p {
   margin: 15px 0;
 }
 
+/* Home page button (Play Welcome Message) */
 .hero button {
   background: #003366;
   color: #fff;
@@ -75,6 +76,7 @@ h1, h2, h3, p {
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
+  transition: 0.3s ease;
 }
 
 .hero button:hover {
@@ -93,7 +95,7 @@ h1, h2, h3, p {
 }
 
 /* ================================
-   LOGIN PAGE
+   LOGIN PAGE STYLES
 ================================ */
 .login-body {
   background: linear-gradient(to bottom right, #e6f0ff, #ffffff);
@@ -142,20 +144,22 @@ input {
   font-size: 15px;
 }
 
-button {
-  background-color: #003366;
-  color: white;
+/* Unique Login Form Button */
+.login-submit {
+  background: #ffcc00;
+  color: #003366;
   border: none;
   padding: 12px;
-  width: 10%;
+  width: 100%;
   border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
-  transition: background 0.3s ease;
+  font-weight: bold;
+  transition: 0.3s ease;
 }
 
-button:hover {
-  background-color: #0055cc;
+.login-submit:hover {
+  background: #ffdb4d;
 }
 
 .signup-text {
