@@ -228,7 +228,7 @@ footer strong {
 }
 
 /* ======== LOGIN BUTTON ======== */
-.login-btn {
+/*.login-btn {
   width: 100%;
   background-color: #364fc7;
   color: white;
@@ -239,7 +239,7 @@ footer strong {
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s ease, transform 0.2s ease;
-}
+}*/
 
 .login-btn:hover {
   background-color: #2536a3;
