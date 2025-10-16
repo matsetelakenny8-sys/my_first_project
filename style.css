@@ -1,291 +1,238 @@
-/* ================================
-   GLOBAL STYLES
-================================ */
+/* ===== GENERAL STYLES ===== */
 body {
-  font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  padding: 0;
-  color: #333;
-  background: #f9f9f9;
+  font-family: 'Poppins', Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-h1, h2, h3, p {
-  margin: 0;
-  padding: 0;
+h1, h2, h3 {
+  color: #222;
 }
 
-/* ================================
-   NAVBAR
-================================ */
+a {
+  text-decoration: none;
+  color: #0056b3;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== NAVIGATION BAR ===== */
 .navbar {
-  background: #003366;
-  color: #fff;
+  background-color: #1f3c88;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 15px 25px;
+  flex-wrap: wrap;
 }
 
 .navbar h1 {
   font-size: 22px;
-  margin: 0;
 }
 
-.login-btn {
-  background: #ffcc00;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  color: #003366;
-  border-radius: 5px;
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+  color: #ffca28;
+}
+
+/* ===== MENU TOGGLE (Mobile) ===== */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
   cursor: pointer;
-  transition: 0.3s ease;
+  color: white;
 }
 
-.login-btn:hover {
-  background: #ffdb4d;
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    background-color: #1f3c88;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 10px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
 }
 
-/* ================================
-   HOME PAGE STYLES
-================================ */
+/* ===== HERO SECTION ===== */
 .hero {
+  background: linear-gradient(rgba(31,60,136,0.8), rgba(31,60,136,0.8)), 
+              url('https://images.unsplash.com/photo-1575320181281-ec1e2ef3e2c8?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+  color: white;
   text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(to bottom, #e6f0ff, #ffffff);
+  padding: 80px 20px;
 }
 
 .hero h1 {
-  font-size: 32px;
-  color: #003366;
+  font-size: 2rem;
+  margin-bottom: 15px;
 }
 
 .hero p {
-  font-size: 18px;
-  color: #444;
-  margin: 15px 0;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 20px;
 }
 
-/* Home page button (Play Welcome Message) */
 .hero button {
-  background: #003366;
-  color: #fff;
+  background-color: #ffca28;
+  color: #1f3c88;
   border: none;
-  padding: 10px 25px;
-  font-size: 16px;
-  border-radius: 5px;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: bold;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 
 .hero button:hover {
-  background: #0055cc;
+  background-color: #ffc107;
 }
 
+/* ===== MAIN CONTENT ===== */
 .content {
-  text-align: center;
+  flex: 1;
   padding: 40px 20px;
-  max-width: 800px;
-  margin: auto;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.content h2 {
-  color: #003366;
+textarea, input {
+  width: 80%;
+  max-width: 500px;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
 }
 
-/* ================================
-   LOGIN PAGE STYLES
-================================ */
-.login-body {
-  background: linear-gradient(to bottom right, #e6f0ff, #ffffff);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+button.main {
+  background-color: #1f3c88;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.login-container {
-  background: #fff;
+button.main:hover {
+  background-color: #15306b;
+}
+
+/* ===== LOGIN & SIGNUP PAGES ===== */
+.login-container, .signup-container {
+  background-color: white;
   padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  width: 100%;
+  margin: auto;
+  margin-top: 60px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   max-width: 400px;
   text-align: center;
 }
 
-.login-container h2 {
-  color: #003366;
-  margin-bottom: 10px;
+.login-container h2, .signup-container h2 {
+  color: #1f3c88;
+  margin-bottom: 15px;
 }
 
-.login-container p {
-  color: #555;
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  text-align: left;
-  margin-bottom: 5px;
-  color: #003366;
-  font-weight: 600;
-}
-
-input {
+.login-container input, 
+.signup-container input {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-}
-
-/* Unique Login Form Button */
-.login-submit {
-  background: #ffcc00;
-  color: #003366;
-  border: none;
-  padding: 12px;
-  width: 100%;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: 0.3s ease;
-}
-
-.login-submit:hover {
-  background: #ffdb4d;
-}
-
-.signup-text {
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-.signup-text a {
-  color: #003366;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.signup-text a:hover {
-  text-decoration: underline;
-}
-
-/* ================================
-   FOOTER
-================================ */
-footer {
-  text-align: center;
-  background: #003366;
-  color: #fff;
-  padding: 20px;
-  font-size: 14px;
-  margin-top: 40px;
-  width: 100%;
-}
-
-@media (max-height: 700px) {
-  footer {
-    position: relative;
-    margin-top: 30px;
-  }
-}
-/* --- HEADER --- */
-header {
-  background-color: #1e3a8a;
-  color: white;
-  text-align: center;
-  padding: 20px 0;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 26px;
-}
-
-/* --- LOGIN CONTAINER --- */
-.login-container {
-  background-color: white;
-  width: 350px;
-  margin: 80px auto;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.login-container h2 {
-  color: #1e3a8a;
-  margin-bottom: 10px;
-}
-
-.login-container p {
-  color: #555;
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  text-align: left;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #333;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 8px;
+  padding: 10px;
 }
 
-button {
-  background-color: #1e3a8a;
+.login-container button, 
+.signup-container button {
+  width: 100%;
+  background-color: #1f3c88;
   color: white;
-  padding: 10px 0;
   border: none;
-  border-radius: 6px;
-  width: 20%;
+  padding: 12px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
-button:hover {
-  background-color: #162e6b;
+.login-container button:hover,
+.signup-container button:hover {
+  background-color: #15306b;
 }
 
-.signup-text {
+.signup-text, .login-text {
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 0.95rem;
 }
 
-.signup-text a {
-  color: #1e3a8a;
-  text-decoration: none;
+.back-home {
+  display: inline-block;
+  margin-top: 15px;
+  color: #1f3c88;
+  font-weight: bold;
 }
 
-.signup-text a:hover {
-  text-decoration: underline;
-}
-
-/* --- FOOTER --- */
+/* ===== FOOTER ===== */
 footer {
-  background-color: #1e3a8a;
+  background-color: #1f3c88;
   color: white;
   text-align: center;
-  padding: 20px 10px;
-  margin-top: 50px;
+  padding: 20px;
+  font-size: 0.9rem;
 }
 
 footer p {
   margin: 5px 0;
-  font-size: 14px;
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 500px) {
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+  .content {
+    padding: 25px 10px;
+  }
+  textarea, input {
+    width: 95%;
+  }
 }
